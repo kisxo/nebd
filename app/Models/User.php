@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -46,4 +47,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    // Return admin statuts
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
+
 }
