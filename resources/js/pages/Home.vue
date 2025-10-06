@@ -80,7 +80,7 @@ const judges = [
                         </div>
 
                         <div class=''>
-                            <a href="/register" class='bg-orange-600 text-white px-8 py-2 rounded-sm'>Register
+                            <a href="/online-registration/create" class='bg-orange-600 text-white px-8 py-2 rounded-sm'>Register
                                 Now</a>
                         </div>
                     </div>
