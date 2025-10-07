@@ -23,6 +23,11 @@ const mainNavItems: NavItem[] = [
         href: dashboard(),
         icon: LayoutGrid,
     },
+    {
+        title: 'Registrations',
+        href: '/admin/registrations',
+        icon: LayoutGrid,
+    },
 ];
 
 const footerNavItems: NavItem[] = [

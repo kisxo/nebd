@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Registration;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\RegistrationController;
@@ -28,9 +29,32 @@ Route::controller(RegistrationController::class)->group(function () {
         ->name('online-registration.store');
 });
 
-Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified', 'admin'])->name('dashboard');
+// Route::get('dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified', 'admin'])->name('dashboard');
+
+
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+
+        // Dashboard page
+        Route::get('/dashboard', function () {
+            $total_registrations = Registration::count();
+            return Inertia::render('Dashboard', [
+                "total_registrations" => $total_registrations,
+            ]);
+        })->name('dashboard');
+
+        // List all registrations
+        Route::get('/registrations', [RegistrationController::class, 'schoolAdminIndex'])
+            ->name('admin.registration');
+
+        // Get a registration
+        Route::get('/registrations/{id}', [RegistrationController::class, 'show'])
+            ->name('admin.registration.detail')
+            ->whereNumber('id'); // Only allow numeric IDs
+    });
+});
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

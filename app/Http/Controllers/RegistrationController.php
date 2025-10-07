@@ -25,6 +25,13 @@ class RegistrationController extends Controller
         return Inertia::render('Registration/Create');
     }
 
+    public function schoolAdminIndex(Request $request)
+    {
+        $registrations = Registration::latest()->get();
+        // dd($registrations);
+        return Inertia::render('Admin/Registrations/Index', compact('registrations'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -88,11 +95,20 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified registration details.
+     *
+     * @param  string  $id  The ID of the registration to retrieve.
+     * @return \Inertia\Response  Inertia response that renders the RegistrationShow Vue component.
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the registration is not found.
      */
     public function show(string $id)
     {
-        //
+        $registration = Registration::findOrFail($id);
+
+        return Inertia::render('Admin/Registrations/Show', [
+            'registration' => $registration,
+        ]);
     }
 
     /**

@@ -37,3 +37,23 @@ export interface User {
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;
+
+
+export interface Registration {
+    id?: number;
+    fullName: string;
+    fatherName: string;
+    age: string;
+    dob: string;
+    address: string;
+    phone: string;
+    email: string;
+    school: string;
+    academy: string;
+    teacher: string;
+    event: string;
+    category: string;
+    payment_screenshot: string | File | null;
+    created_at?: Date;
+    updated_at?: Date;
+}
