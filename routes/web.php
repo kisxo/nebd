@@ -9,6 +9,11 @@ Route::get('/', function () {
     return Inertia::render('Home');
 })->name('home');
 
+Route::get('/judges', function () {
+    return Inertia::render('Judges');
+})->name('judges');
+
+
 /**
  * Admission Section
  */
