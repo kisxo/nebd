@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Footer from "@/components/Footer.vue";
 import BaseLayout from "@/layouts/BaseLayout.vue";
 import { useForm } from "@inertiajs/vue3";
 import { reactive, ref } from "vue";
@@ -28,8 +29,62 @@ const form = useForm({
     payment_screenshot: null,
 });
 
-const danceCategory = ["Sub Junior", "Junior", "Senior","Duet", "Group"];
-const fashionCategory = ["Mr", "Miss", "Mrs"];
+const categories = {
+    Dance: [
+        {
+            name: "Sub Junior",
+            fees: 300,
+            ageRange: "Below 12 years",
+            description: "Solo performance for participants under 12 years."
+        },
+        {
+            name: "Junior",
+            fees: 400,
+            ageRange: "13–17 years",
+            description: "Solo dance category for teenage participants."
+        },
+        {
+            name: "Senior",
+            fees: 500,
+            ageRange: "18 years & above",
+            description: "Open solo category for adult dancers."
+        },
+        {
+            name: "Duet",
+            fees: 700,
+            ageRange: "All ages",
+            description: "Two-person dance performance showcasing coordination."
+        },
+        {
+            name: "Group",
+            fees: 1000,
+            ageRange: "All ages",
+            description: "Group dance category (minimum 3 members)."
+        }
+    ],
+
+    Fashion: [
+        {
+            name: "Mr",
+            fees: 500,
+            ageRange: "18 years & above",
+            description: "Fashion walk and personality round for male participants."
+        },
+        {
+            name: "Miss",
+            fees: 500,
+            ageRange: "18 years & above",
+            description: "Fashion walk and talent round for female participants."
+        },
+        {
+            name: "Mrs",
+            fees: 600,
+            ageRange: "Married participants",
+            description: "Special category for married contestants."
+        }
+    ]
+};
+
 
 // initial value of form submit
 const success = ref(false);
@@ -78,192 +133,188 @@ const submitForm = () => {
 
 </script>
 
-<template>
 
+<template>
     <BaseLayout>
         <div
-            class="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-700 via-pink-600 to-red-500 p-6">
+            class="min-h-screen bg-gradient-to-br from-purple-800 via-pink-700 to-red-600 flex items-center justify-center p-6 py-20">
             <div
-                class="w-full max-w-2xl bg-white/90 backdrop-blur-xl shadow-2xl rounded-3xl p-8 border border-white/30">
-                <h2
-                    class="text-3xl font-extrabold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500">
-                    Registration Form
-                </h2>
+                class="max-w-5xl w-full bg-white/10 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/20 overflow-hidden flex flex-col md:flex-row">
 
-                <!-- Event -->
-                <div class="relative pb-6">
-                    <label for="event"
-                        class=" text-gray-500 ps-2 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-purple-600">
-                        Type
-                    </label>
-                    <select v-model="form.event"
-                        class="peer w-full border-b-2 border-gray-300 bg-transparent px-2 pt-2 pb-1 text-lg focus:border-purple-500 focus:outline-none">
-                        <option value="">-- Select Event --</option>
-                        <option value="Dance">Dance</option>
-                        <option value="Fashion">Fashion</option>
-                    </select>
+                <!-- Left Info Panel -->
+                <div
+                    class="md:w-1/2 bg-gradient-to-br from-purple-900/60 to-pink-700/60 p-10 text-white flex flex-col justify-center relative">
+                    <div class="absolute inset-0 bg-[url('/assets/pattern.svg')] opacity-10 bg-cover bg-center"></div>
 
-                    <p v-if="form.errors.event" class="text-red-500 text-sm mt-1">{{ form.errors.event }}</p>
+                    <h2 class="relative text-4xl font-extrabold mb-4 leading-tight tracking-wide drop-shadow-lg">
+                        Register for <br />
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-300 to-yellow-400">
+                            The Ultimate Championship
+                        </span>
+                    </h2>
+                    <p class="relative text-sm opacity-90">
+                        Join Northeast's biggest <b>Dance</b> & <b>Fashion Championship</b> of 2025. Showcase your
+                        talent,
+                        shine
+                        on stage, and win exciting prizes! 🌟
+                    </p>
+
+                    <ul class="mt-6 space-y-2 text-sm opacity-90">
+                        <li class="flex items-center gap-2"><span class="text-yellow-300">🎭</span> Open for all age
+                            groups
+                        </li>
+                        <li class="flex items-center gap-2"><span class="text-yellow-300">💃</span> Dance & Fashion
+                            categories</li>
+                        <li class="flex items-center gap-2"><span class="text-yellow-300">🏆</span> Certificates &
+                            trophies
+                            for winners</li>
+                    </ul>
                 </div>
 
-                <!-- Category -->
-                <div class="relative pb-6">
-                                        <label for="category"
-                        class=" text-gray-500 ps-2 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-purple-600">
-                        Category
-                    </label>
-                    <select v-model="form.category"
-                        class="peer w-full border-b-2 border-gray-300 bg-transparent px-2 pt-2 pb-1 text-lg focus:border-purple-500 focus:outline-none">
-                        <option value="">-- Select Category --</option>
-                        <option v-if="form.event == 'Dance'" v-for="item in danceCategory" :value="item">{{ item }}</option>
-                        <option v-if="form.event == 'Fashion'" v-for="item in fashionCategory" :value="item">{{ item }}</option>
-                    </select>
+                <!-- Right Form Panel -->
+                <div class="md:w-1/2 bg-white/90 backdrop-blur-xl p-8 md:p-10 relative">
+                    <h2
+                        class="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500">
+                        Registration Form
+                    </h2>
 
-                    <p v-if="form.errors.category" class="text-red-500 text-sm mt-1">{{ form.errors.category }}</p>
+                    <form @submit.prevent="submitForm" class="space-y-5">
+
+                        <!-- Event -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-600 mb-1">Type <span
+                                    class="text-red-500">*</span></label>
+                            <select v-model="form.event"
+                                class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-pink-400 focus:outline-none bg-white">
+                                <option value="">-- Select Event --</option>
+                                <option value="Dance">Dance</option>
+                                <option value="Fashion">Fashion</option>
+                            </select>
+                            <p v-if="form.errors.event" class="text-red-500 text-sm mt-1">{{ form.errors.event }}</p>
+                        </div>
+
+                        <!-- Category -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-600 mb-1">
+                                Category <span class="text-red-500">*</span>
+                            </label>
+
+                            <select v-model="form.category"
+                                class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-400 focus:outline-none bg-white">
+                                <option value="">-- Select Category --</option>
+                                <option v-if="form.event === 'Dance'" v-for="item in categories.Dance" :key="item.name"
+                                    :value="item.name">
+                                    {{ item.name }} — ₹{{ item.fees }}
+                                </option>
+                                <option v-if="form.event === 'Fashion'" v-for="item in categories.Fashion"
+                                    :key="item.name" :value="item.name">
+                                    {{ item.name }} — ₹{{ item.fees }}
+                                </option>
+                            </select>
+
+                            <p v-if="form.errors.category" class="text-red-500 text-sm mt-1">
+                                {{ form.errors.category }}
+                            </p>
+
+                        </div>
+
+
+                        <!-- Grid Layout for Basic Details -->
+                        <div class="grid md:grid-cols-2 gap-5">
+                            <div v-for="field in [
+                                { id: 'fullName', label: 'Full Name', type: 'text' },
+                                { id: 'fatherName', label: 'Father\'s Name', type: 'text' },
+                                { id: 'age', label: 'Age', type: 'number' },
+                                { id: 'dob', label: 'Date of Birth', type: 'date' },
+                                { id: 'phone', label: 'Phone', type: 'tel' },
+                                { id: 'email', label: 'Email', type: 'email' },
+                            ]" :key="field.id" class="relative">
+                                <label :for="field.id" class="block text-sm font-semibold text-gray-600 mb-1">{{
+                                    field.label
+                                    }} <span class="text-red-500">*</span></label>
+                                <input v-model="form[field.id]" :type="field.type" :id="field.id"
+                                    class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-400 focus:outline-none bg-white" />
+                                <p v-if="form.errors[field.id]" class="text-red-500 text-sm mt-1">{{
+                                    form.errors[field.id]
+                                    }}</p>
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div>
+                            <label for="address" class="block text-sm font-semibold text-gray-600 mb-1">Address <span
+                                    class="text-red-500">*</span></label>
+                            <input v-model="form.address" type="text" id="address"
+                                class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-pink-400 focus:outline-none bg-white" />
+                            <p v-if="form.errors.address" class="text-red-500 text-sm mt-1">{{ form.errors.address }}
+                            </p>
+                        </div>
+
+                        <!-- School / Academy / Teacher -->
+                        <div class="grid md:grid-cols-1 gap-5">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-600 mb-1">School <span
+                                    class="text-red-500">*</span></label>
+                                <input v-model="form.school" type="text"
+                                    class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-pink-400 focus:outline-none bg-white" />
+                                <p v-if="form.errors.school" class="text-red-500 text-sm mt-1">
+                                {{ form.errors.school }}
+                            </p>
+                                </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-600 mb-1">Academy</label>
+                                <input v-model="form.academy" type="text"
+                                    class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-pink-400 focus:outline-none bg-white" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-600 mb-1">Teacher</label>
+                                <input v-model="form.teacher" type="text"
+                                    class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-pink-400 focus:outline-none bg-white" />
+                            </div>
+                        </div>
+
+                        <!-- Payment Screenshot -->
+                        <div>
+
+                            <label class="block text-sm font-semibold text-gray-600 mb-1">Upload Payment
+                                Screenshot <span class="text-red-500">*</span></label>
+                            <!-- Fee Display -->
+                            <p v-if="form.category && form.event" class="text-purple-600 font-medium mt-2">
+                                Entry Fee:
+                                ₹{{
+                                    categories[form.event].find((c) => c.name === form.category)?.fees || 0
+                                }}
+                            </p>
+                            <div class="flex items-center justify-center w-full">
+                                <label
+                                    class="flex flex-col w-full h-28 border-2 border-dashed border-purple-300 rounded-xl cursor-pointer hover:bg-purple-50 transition-all duration-300">
+                                    <div class="flex flex-col items-center justify-center pt-6">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-purple-400 mb-2"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 16a4 4 0 01-.88-7.903A5.002 5.002 0 0117 9a5.002 5.002 0 01.9 9.9H7z" />
+                                        </svg>
+                                        <p class="text-sm text-gray-600">Click to upload or drag & drop</p>
+                                    </div>
+                                    <input type="file" @change="form.payment_screenshot = $event.target.files[0]"
+                                        class="hidden" />
+                                </label>
+                            </div>
+                            <p v-if="form.errors.payment_screenshot" class="text-red-500 text-sm mt-1">{{
+                                form.errors.payment_screenshot }}</p>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="pt-4">
+                            <button type="submit"
+                                class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 text-white font-bold shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300">
+                                🚀 Register Now
+                            </button>
+                        </div>
+                    </form>
                 </div>
-
-                <form @submit.prevent="submitForm" class="space-y-6">
-
-                    <!-- Full Name -->
-                    <div class="relative">
-                        <input v-model="form.fullName" type="text" id="fullName" placeholder=" "
-                            class="peer w-full border-b-2 border-gray-300 bg-transparent px-2 pt-4 pb-1 text-lg focus:border-purple-500 focus:outline-none" />
-                        <label for="fullName"
-                            class="absolute left-2 top-1 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-purple-600">
-                            Full Name
-                        </label>
-                        <p v-if="form.errors.fullName" class="text-red-500 text-sm mt-1">{{ form.errors.fullName }}</p>
-                    </div>
-
-                    <!-- Father's Name -->
-                    <div class="relative">
-                        <input v-model="form.fatherName" type="text" id="fatherName" placeholder=" "
-                            class="peer w-full border-b-2 border-gray-300 bg-transparent px-2 pt-4 pb-1 text-lg focus:border-purple-500 focus:outline-none" />
-                        <label for="fatherName"
-                            class="absolute left-2 top-1 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-purple-600">
-                            Father's Name
-                        </label>
-                        <p v-if="form.errors.fatherName" class="text-red-500 text-sm mt-1">{{ form.errors.fatherName }}
-                        </p>
-                    </div>
-
-                    <!-- Age -->
-                    <div class="relative">
-                        <input v-model="form.age" type="number" id="age" placeholder=" "
-                            class="peer w-full border-b-2 border-gray-300 bg-transparent px-2 pt-4 pb-1 text-lg focus:border-purple-500 focus:outline-none" />
-                        <label for="age"
-                            class="absolute left-2 top-1 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-purple-600">
-                            Age
-                        </label>
-                        <p v-if="form.errors.age" class="text-red-500 text-sm mt-1">{{ form.errors.age }}</p>
-                    </div>
-
-                    <!-- Date of Birth -->
-                    <div class="relative pt-2">
-                                                <label for="dob"
-                            class="ps-2  text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-purple-600">
-                            Date of Birth
-                        </label>
-                        <input v-model="form.dob" type="date" id="dob" placeholder=" "
-                            class="peer w-full border-b-2 border-gray-300 bg-transparent px-2 pt-2 pb-1 text-lg focus:border-purple-500 focus:outline-none" />
-
-                        <p v-if="form.errors.dob" class="text-red-500 text-sm mt-1">{{ form.errors.dob }}</p>
-                    </div>
-
-                    <!-- Address -->
-                    <div class="relative">
-                        <input v-model="form.address" type="text" id="address" placeholder=" "
-                            class="peer w-full border-b-2 border-gray-300 bg-transparent px-2 pt-4 pb-1 text-lg focus:border-purple-500 focus:outline-none" />
-                        <label for="address"
-                            class="absolute left-2 top-1 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-purple-600">
-                            Address
-                        </label>
-                        <p v-if="form.errors.address" class="text-red-500 text-sm mt-1">{{ form.errors.address }}</p>
-                    </div>
-
-                    <!-- Phone -->
-                    <div class="relative">
-                        <input v-model="form.phone" type="tel" id="phone" placeholder=" "
-                            class="peer w-full border-b-2 border-gray-300 bg-transparent px-2 pt-4 pb-1 text-lg focus:border-purple-500 focus:outline-none" />
-                        <label for="phone"
-                            class="absolute left-2 top-1 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-purple-600">
-                            Phone
-                        </label>
-                        <p v-if="form.errors.phone" class="text-red-500 text-sm mt-1">{{ form.errors.phone }}</p>
-                    </div>
-
-                    <!-- Email -->
-                    <div class="relative">
-                        <input v-model="form.email" type="email" id="email" placeholder=" "
-                            class="peer w-full border-b-2 border-gray-300 bg-transparent px-2 pt-4 pb-1 text-lg focus:border-purple-500 focus:outline-none" />
-                        <label for="email"
-                            class="absolute left-2 top-1 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-purple-600">
-                            Email
-                        </label>
-                        <p v-if="form.errors.email" class="text-red-500 text-sm mt-1">{{ form.errors.email }}</p>
-                    </div>
-
-                    <!-- School -->
-                    <div class="relative">
-                        <input v-model="form.school" type="text" id="school" placeholder=" "
-                            class="peer w-full border-b-2 border-gray-300 bg-transparent px-2 pt-4 pb-1 text-lg focus:border-purple-500 focus:outline-none" />
-                        <label for="school"
-                            class="absolute left-2 top-1 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-purple-600">
-                            School
-                        </label>
-                        <p v-if="form.errors.school" class="text-red-500 text-sm mt-1">{{ form.errors.school }}</p>
-                    </div>
-
-                    <!-- Academy -->
-                    <div class="relative">
-                        <input v-model="form.academy" type="text" id="academy" placeholder=" "
-                            class="peer w-full border-b-2 border-gray-300 bg-transparent px-2 pt-4 pb-1 text-lg focus:border-purple-500 focus:outline-none" />
-                        <label for="academy"
-                            class="absolute left-2 top-1 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-purple-600">
-                            Academy/Coach
-                        </label>
-                        <p v-if="form.errors.academy" class="text-red-500 text-sm mt-1">{{ form.errors.academy }}</p>
-                    </div>
-
-                    <!-- Teacher -->
-                    <div class="relative">
-                        <input v-model="form.teacher" type="text" id="teacher" placeholder=" "
-                            class="peer w-full border-b-2 border-gray-300 bg-transparent px-2 pt-4 pb-1 text-lg focus:border-purple-500 focus:outline-none" />
-                        <label for="teacher"
-                            class="absolute left-2 top-1 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-purple-600">
-                            Teacher
-                        </label>
-                        <p v-if="form.errors.teacher" class="text-red-500 text-sm mt-1">{{ form.errors.teacher }}</p>
-                    </div>
-
-                    <!-- Payment Screenshot -->
-                    <div class="relative py-2">
-                                             <label
-                            class="ps-2 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-purple-600">
-                            Upload Payment Screenshot
-                        </label>
-                        <input type="file" @change="form.payment_screenshot = $event.target.files[0]"
-                            class="peer w-full border-b-2 border-gray-300 bg-transparent px-2 pt-2 pb-1 text-lg focus:border-purple-500 focus:outline-none" />
-   
-                        <p v-if="form.errors.payment_screenshot" class="text-red-500 text-sm mt-1">{{
-                            form.errors.payment_screenshot }}</p>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button type="submit"
-                        class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold shadow-lg hover:opacity-90 transform hover:scale-[1.02] transition duration-300">
-                        🚀 Register Now
-                    </button>
-
-                </form>
             </div>
         </div>
-        <div v-if="status === 'success'"
-            class="p-6 bg-green-100 border border-green-300 rounded-xl text-green-800 shadow-lg">
-            ✅ {{ message }}
-            <div v-if="id" class="mt-2 text-sm text-gray-700">
-                Your Registration ID: <b>{{ id }}</b>
-            </div>
-        </div>
+        <Footer />
     </BaseLayout>
 </template>
