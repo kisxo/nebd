@@ -123,7 +123,7 @@ const NavItems: NavItem[] = [
                 <Link href="/judges" class="nav-link">Judges</Link>
             </div>
             <div>
-                <Link href="/about-us" class="nav-link">About Us</Link>
+                <Link href="/about" class="nav-link">About Us</Link>
             </div>
 
             <div>

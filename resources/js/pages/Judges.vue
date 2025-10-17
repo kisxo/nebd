@@ -2,6 +2,7 @@
 import AppLayout from "@/layouts/AppLayout.vue";
 
 import akshayImg from "../../assets/judges/akshay.png";
+import dharmeshImg from "../../assets/judges/Dharmesh.png";
 import akanshyaImg from "../../assets/judges/akanshya.png";
 import imonImg from "../../assets/judges/imon.png";
 import pariImg from "../../assets/judges/pari.png";
@@ -29,7 +30,7 @@ type Judge = {
 };
 
 const judges = ref<Judge[]>([
-    { id: 1, name: 'Dharmesh Sir', title: 'Celebrity Choreographer', role: 'Grand Final', genre: 'Bollywood/Freestyle', city: 'Mumbai', image: akshayImg, awards: ['TV Judge', 'National Tours'], experience: 15, shows: 120, followers: 950, bio: 'Renowned performer and mentor known for dynamic freestyle and mentorship across national platforms.', links: [{ label: 'Instagram', href: '#' }] },
+    { id: 1, name: 'Dharmesh Sir', title: 'Celebrity Choreographer', role: 'Grand Final', genre: 'Bollywood/Freestyle', city: 'Mumbai', image: dharmeshImg, awards: ['TV Judge', 'National Tours'], experience: 15, shows: 120, followers: 950, bio: 'Renowned performer and mentor known for dynamic freestyle and mentorship across national platforms.', links: [{ label: 'Instagram', href: '#' }] },
     { id: 2, name: 'Imon Kharjana', title: 'Choreographer', role: 'Semi Finale', genre: 'Contemporary', city: 'Guwahati', image: imonImg, experience: 9, shows: 60, followers: 120, bio: 'Acclaimed for emotive contemporary storytelling and clean technique.' },
     { id: 3, name: 'Akashya Priyadarshoni', title: 'Performer & Coach', role: 'Semi Finale', genre: 'Classical Fusion', city: 'Kolkata', image: akanshyaImg, experience: 8, shows: 48, followers: 85, bio: 'Classical roots blended with modern forms; mentor to multiple state-level winners.' },
     { id: 4, name: 'Ritesh Pal', title: 'Choreographer', role: 'Semi Finale', genre: 'Hip-Hop', city: 'Shillong', image: riteshImg, experience: 7, shows: 52, followers: 65, bio: 'Crew founder and street styles advocate with strong musicality.' },

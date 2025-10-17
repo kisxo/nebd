@@ -13,6 +13,10 @@ Route::get('/judges', function () {
     return Inertia::render('Judges');
 })->name('judges');
 
+Route::get('/about', function () {
+    return Inertia::render('About');
+})->name('about');
+
 
 /**
  * Admission Section
