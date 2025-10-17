@@ -6,6 +6,7 @@ import fashionGirl from '../../../assets/fashion-girl.png';
 
 
 import { ref, nextTick } from 'vue';
+import { Link } from '@inertiajs/vue3';
 
 type Tab = {
     id: string;
@@ -521,7 +522,7 @@ function onKeydown(e: KeyboardEvent) {
 
             <!-- CTA -->
             <div class="mt-10 text-center">
-                <a href="/online-registration/create" target="_blank"
+                <Link href="/online-registration/create" target="_blank"
                     class="inline-flex items-center gap-3 px-8 py-3 bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-200 text-black font-extrabold rounded-full shadow-lg hover:scale-105 transition">
                     Agree & Register
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -529,7 +530,7 @@ function onKeydown(e: KeyboardEvent) {
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
-                </a>
+                </Link>
             </div>
         </div>
     </section>

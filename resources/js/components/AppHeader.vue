@@ -12,6 +12,7 @@ import {
 import {
     NavigationMenu,
     NavigationMenuItem,
+    NavigationMenuLink,
     NavigationMenuList,
     navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
@@ -97,14 +98,14 @@ const NavItems: NavItem[] = [
                         <!-- Divider line between sections-->
                         <hr class="border-t-1 border-gray-200 dark:border-gray-700" />
 
-                        <NavigationMenuLink :href="'/notifications'" class="block font-['Poppins'] font-semibold px-2 py-4 hover:underline"><span class=""></span>Judges</NavigationMenuLink>
+                        <NavigationMenuLink :href="'/judges'" class="block font-['Poppins'] font-semibold px-2 py-4 hover:underline"><span class=""></span>Judges</NavigationMenuLink>
 
                         <hr class="border-t-1 border-gray-200 dark:border-gray-700" />
 
-                        <NavigationMenuLink :href="'/notifications'" class="block font-['Poppins'] font-semibold px-2 py-4 hover:underline"><span class=""></span>About Us</NavigationMenuLink>
+                        <NavigationMenuLink :href="'/about'" class="block font-['Poppins'] font-semibold px-2 py-4 hover:underline"><span class=""></span>About Us</NavigationMenuLink>
 
                         <hr class="border-t-1 border-gray-200 dark:border-gray-700" />
-                        <NavigationMenuLink :href="'/'" class="block font-['Poppins'] font-semibold px-2 py-4 hover:underline"><span class="flex items-center gap-4">Register Now <Edit class="size-6"/></span></NavigationMenuLink>
+                        <NavigationMenuLink :href="'/online-registration/create'" class="block font-['Poppins'] font-semibold px-2 py-4 hover:underline"><span class="flex items-center gap-4">Register Now <Edit class="size-6"/></span></NavigationMenuLink>
                     </Accordion>
                 </SheetContent>
             </Sheet>
@@ -126,7 +127,7 @@ const NavItems: NavItem[] = [
             </div>
 
             <div>
-                <Link href="/nebd/register" class="nav-link border px-8 py-2 rounded-4xl ms-6">Register Now</Link>
+                <Link href="/online-registration/create" class="nav-link border px-8 py-2 rounded-4xl ms-6">Register Now</Link>
             </div>
           </div>
 

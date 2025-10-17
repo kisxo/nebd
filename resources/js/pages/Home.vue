@@ -16,6 +16,7 @@ import dancePoster from "../../assets/dance-poster.png";
 
 import Footer from '@/components/Footer.vue';
 import Rules from '@/components/home/Rules.vue';
+import { Link } from '@inertiajs/vue3';
 
 const judges = [
     {
@@ -85,9 +86,9 @@ const judges = [
                         </div>
 
                         <div class=''>
-                            <a href="/online-registration/create"
+                            <Link href="/online-registration/create"
                                 class='bg-orange-600 text-white px-8 py-2 rounded-sm'>Register
-                                Now</a>
+                                Now</Link>
                         </div>
                     </div>
                 </div>
@@ -240,7 +241,7 @@ const judges = [
 
                     <!-- Call to Action -->
                     <div class="pt-4">
-                        <a href="https://wa.me/917086208757"
+                        <Link href="/online-registration/create"
                             class="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-200 text-black font-extrabold rounded-full shadow-lg hover:scale-105 transition-transform duration-500">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -248,7 +249,7 @@ const judges = [
                                 <path d="M22 12H2m10-10v20" />
                             </svg>
                             Register Now
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
